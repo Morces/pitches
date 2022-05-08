@@ -15,4 +15,10 @@ def pitches():
     
 
     return render_template('pitches.html', pitch_form=pitch_form)
+
+@main.route('/user/<username>')
+def profile(username):
+
+
+    return render_template('profile.html')
     
