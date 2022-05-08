@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{ block css %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
+{% endblock %}
+
+{% block title %}
+Homepage
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 content">
+            <div class="two"></div>
+            <h1>Welcome to Pitches Platform</h1>
+            <p>Where you get to engage a pitch for only sixty seconds</p>
+            <p>Enjoy!!!</p>
+        </div>
+        <div class="col-md-7">
+            <img src="{{url_for('static', filename='img/pitch.jpg')}}" alt="">
+        </div>
+    </div>
+    <div class="one"></div>
+    <a href="{{url_for('auth.login')}}"><button class="btn btn-primary">Add Pitch</button></a>
+</div>
+
+{% endblock %}
