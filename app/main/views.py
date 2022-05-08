@@ -12,5 +12,7 @@ def pitches():
 
     pitch_form = PitchForm()
 
+    
+
     return render_template('pitches.html', pitch_form=pitch_form)
     
