@@ -52,23 +52,27 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right">
                     <li class="nav-item">
-                        <a class="nav-link" href="">HOME</a>
+                        <a class="nav-link" href="{{url_for('main.index')}}">HOME</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('auth.logout')}}"><i class="bi bi-logout"></i> LOG OUT</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">LOG OUT</a>
+                        <a class="nav-link" href="{{url_for('main.pitches')}}"><i class="bi bi-chat-0"></i> PITCHES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">PITCHES</a>
+                        <a class="nav-link" href="{{url_for('main.profile', username=current_user.username)}}"><i class="bi bi-person"></i> PROFILE</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('auth.login')}}">LOGIN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">PROFILE</a>
+                        <a class="nav-link" href="{{url_for('auth.register')}}">SIGN UP</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">LOGIN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">SIGN UP</a>
-                    </li>
+                    {% endif %}
+                </ul>
             </div>
 
         </div>
