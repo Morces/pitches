@@ -1,9 +1,10 @@
-from flask_login import current_user, login_required
-from app.main.forms import PitchForm
+from app.main.forms import EditProfile, PitchForm
 from app.models import Dislikes, Likes, Pitch, User
-from . import main
-from flask import redirect, render_template, url_for
+from flask import flash, redirect, render_template, url_for
+from flask_login import current_user, login_required
+
 from .. import db
+from . import main
 
 
 @main.route('/')
@@ -62,6 +63,23 @@ def dislike(id):
     new_vote = Dislikes(dislike=current_user, pitch_id=id)
     new_vote.save()
     return redirect(url_for('main.pitches', id=id))
+
+
+@main.route('/edit', methods=['GET', 'POST']
+@login_required)
+def edit():
+    form = EditProfile()
+    if form.validate_on_submit():
+        current_user.username = form.name.data
+        current_user.bio = form.bio.data
+        db.session.add(current_user._get_current_object())
+        db.session.commit()
+        flash('Your profile has been update')
+        return redirect(url_for('.profile', username = current_user.username))
+    form.name.data  = current_user.username
+    form.bio.data = current_user.bio
+    return render_template('edit.html', form=form)
+
 
 
 
