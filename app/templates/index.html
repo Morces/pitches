@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 
-{ block css %}
+{% block css %}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
-{% endblock %}
+{% endblock css %}
 
-{% block title %}
-Homepage
-{% endblock %}
+
 
 {% block content %}
 
@@ -19,7 +17,7 @@ Homepage
             <p>Enjoy!!!</p>
         </div>
         <div class="col-md-7">
-            <img src="{{url_for('static', filename='img/pitch.jpg')}}" alt="">
+            <img src="{{url_for('static', filename='img/pitch.png')}}" alt="">
         </div>
     </div>
     <div class="one"></div>

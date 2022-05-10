@@ -31,42 +31,42 @@ def profile(username):
     
     return render_template('profile.html', user=user, pitches=posts)
 
-@main.route('/like/<init:id>', methods=['GET', 'POST'])
+# @main.route('/like/<init:id>', methods=['GET', 'POST'])
+# @login_required
+# def like(id):
+#     get_pitches = Likes.get_likes(id)
+#     valid_string = f'{current_user.id}:{id}'
+#     for pitch in get_pitches:
+#         to_str = f'{pitch}'
+#         print(valid_string + " " + to_str)
+#         if valid_string == to_str:
+#             return redirect(url_for('main.pitches', id=id))
+#         else:
+#             continue
+#     new_vote = Likes(user=current_user, pitch_id=id)
+#     new_vote.save()
+#     return redirect(url_for('main.pitches', id=id))
+
+
+# @main.route('/like/<init:id>', methods=['GET', 'POST'])
+# @login_required
+# def dislike(id):
+#     get_pitches = Dislikes.get_dislikes(id)
+#     valid_string = f'{current_user.id}:{id}'
+#     for pitch in get_pitches:
+#         to_str = f'{pitch}'
+#         print(valid_string + " " + to_str)
+#         if valid_string == to_str:
+#             return redirect(url_for('main.pitches', id=id))
+#         else:
+#             continue
+#     new_vote = Dislikes(dislike=current_user, pitch_id=id)
+#     new_vote.save()
+#     return redirect(url_for('main.pitches', id=id))
+
+
+@main.route('/edit', methods=['GET', 'POST'])
 @login_required
-def like(id):
-    get_pitches = Likes.get_likes(id)
-    valid_string = f'{current_user.id}:{id}'
-    for pitch in get_pitches:
-        to_str = f'{pitch}'
-        print(valid_string + " " + to_str)
-        if valid_string == to_str:
-            return redirect(url_for('main.pitches', id=id))
-        else:
-            continue
-    new_vote = Likes(user=current_user, pitch_id=id)
-    new_vote.save()
-    return redirect(url_for('main.pitches', id=id))
-
-
-@main.route('/like/<init:id>', methods=['GET', 'POST'])
-@login_required
-def dislike(id):
-    get_pitches = Dislikes.get_dislikes(id)
-    valid_string = f'{current_user.id}:{id}'
-    for pitch in get_pitches:
-        to_str = f'{pitch}'
-        print(valid_string + " " + to_str)
-        if valid_string == to_str:
-            return redirect(url_for('main.pitches', id=id))
-        else:
-            continue
-    new_vote = Dislikes(dislike=current_user, pitch_id=id)
-    new_vote.save()
-    return redirect(url_for('main.pitches', id=id))
-
-
-@main.route('/edit', methods=['GET', 'POST']
-@login_required)
 def edit():
     form = EditProfile()
     if form.validate_on_submit():
