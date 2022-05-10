@@ -57,18 +57,19 @@
                     <a class="nav-link" href="{{url_for('main.index')}}">HOME</a>
                 </li>
                 {% if current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('auth.logout')}}"><i class="bi bi-logout"></i> LOG OUT</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('main.pitches')}}"><i class="bi bi-chat-0"></i> PITCHES</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('main.profile', username=current_user.username)}}"><i class="bi bi-person"></i> PROFILE</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('auth.logout')}}"><i class="fa fa-sign-out" aria-hidden="true"></i> LOG OUT</a>
+                </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('auth.login')}}">LOGIN</a>
+                    <a class="nav-link" href="{{url_for('auth.login')}}"><i class="fa fa-sign-in" aria-hidden="true"></i>LOGIN</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('auth.register')}}">SIGN UP</a>

@@ -1,9 +1,12 @@
 from datetime import datetime
 
-from werkzeug.security import generate_password_hash, check_password_hash
-from app import db
-from . import login_manager
 from flask_login import UserMixin
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from app import db
+
+from . import login_manager
+
 
 class Pitch(db.Model):
     __tablename__ = 'pitches'
@@ -12,7 +15,8 @@ class Pitch(db.Model):
     name = db.Column(db.String(20))
     timestamp = db.Column(db.DateTime, index = True, default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-
+    likes = db.relationship('Likes', backref = 'likes', lazy = 'dynamic')
+    dislikes = db.relationship('Dislikes', backref = 'dislikes', lazy = 'dynamic')
 
 
     def __repr__(self):
@@ -28,7 +32,8 @@ class User(UserMixin,db.Model):
     bio = db.Column(db.Text())
     member_since = db.Column(db.DateTime,default=datetime.utcnow)
     pitches = db.relationship('Pitch', backref = 'author', lazy = 'dynamic')
-
+    likes = db.relationship('Likes', backref = 'user', lazy = 'dynamic')
+    dislikes = db.relationship('Dislikes', backref = 'dislike', lazy = 'dynamic')
 
 
     @property
